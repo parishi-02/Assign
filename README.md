@@ -130,8 +130,8 @@ Follow these steps to install and set up the project on your local machine:
 
 
    ```bash
-   git clone https://github.com/parishi-02/edProgressTrack.git
-   cd edProgressTrack
+   git clone https://github.com/parishi-02/EdProgress-Tracker.git
+   cd EdProgress-Tracker
    ```
 
 ### 2. Set up the Database
