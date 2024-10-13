@@ -101,7 +101,7 @@ INSERT INTO user_roles VALUES ('admin', 'ADMIN');
 
 
 * #### **Trainee Bulk Upload Format**
-    Similarly, the Excel sheet for bulk uploading trainees must adhere to the required format. You can download the template from the repository [here](trainee_bulk_upload_template.xlsx).
+    Similarly, the Excel sheet for bulk uploading trainees must adhere to the required format. You can download the template from the repository [here](https://github.com/parishi-02/EdProgress-Tracker/blob/main/Excels/TraineeUploadFormat.xlsx).
 
 ## Tech Stack
 
