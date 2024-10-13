@@ -97,7 +97,7 @@ INSERT INTO user_roles VALUES ('admin', 'ADMIN');
 ### 3. Excel Sheet Upload Formats
 
 * #### **Course Plan Upload Format**
-    Please ensure that the Excel sheet used for uploading course plans follows the specified format. You can download the template from the repository [here](course_plan_template.xlsx).
+    Please ensure that the Excel sheet used for uploading course plans follows the specified format. You can download the template from the repository [here]([course_plan_template.xlsx](https://github.com/parishi-02/EdProgress-Tracker/blob/main/Excels/CoursePlanFormat.xlsx)).
 
 
 * #### **Trainee Bulk Upload Format**
