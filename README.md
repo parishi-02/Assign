@@ -87,7 +87,7 @@ INSERT INTO user_roles VALUES ('admin', 'ADMIN');
 * Please note the following formats for generating usernames and passwords for trainers and trainees:
 
   ### Trainer Credentials:
-    - **Username**: `nameTraineeId` (e.g., `parishi10000`)
+    - **Username**: `name+TraineeId` (e.g., `parishi10000`)
     - **Password**: First three letters of the trainer's name + `@` + trainer ID (e.g., `par@10000`)
 
     ### Trainee Credentials:
