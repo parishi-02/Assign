@@ -1,1 +1,392 @@
-
+Hibernate: create sequence hibernate_sequence start with 1 increment by  1
+Hibernate: 
+    
+    create table Assessment_marksObtained (
+       Assessment_Assessment_Id number(10,0) not null,
+        marksObtained double precision,
+        marksObtained_KEY number(10,0) not null,
+        primary key (Assessment_Assessment_Id, marksObtained_KEY)
+    )
+Hibernate: 
+    
+    create table AssignmentPlan_marksObtained (
+       AssignmentPlan_assignment_plan_Id number(10,0) not null,
+        marksObtained double precision,
+        marksObtained_KEY number(10,0) not null,
+        primary key (AssignmentPlan_assignment_plan_Id, marksObtained_KEY)
+    )
+Hibernate: 
+    
+    create table attendance_trainee (
+       attendanceId number(10,0) not null,
+        employeeId number(10,0) not null
+    )
+Hibernate: 
+    
+    create table track_assessment (
+       Assessment_Id number(10,0) not null,
+        Actual_Date date,
+        Planned_Date date,
+        Remarks varchar2(255 char),
+        Assessment_Description varchar2(255 char),
+        Total_Score double precision,
+        primary key (Assessment_Id)
+    )
+Hibernate: 
+    
+    create table track_assignment_plan (
+       assignment_plan_Id number(10,0) not null,
+        Assignment_description varchar2(255 char),
+        Total_score double precision,
+        primary key (assignment_plan_Id)
+    )
+Hibernate: 
+    
+    create table track_attendance (
+       attendanceId number(10,0) not null,
+        attendanceDate date,
+        attendanceDay varchar2(255 char),
+        primary key (attendanceId)
+    )
+Hibernate: 
+    
+    create table track_batch (
+       batch_id varchar2(255 char) not null,
+        creation_date date,
+        coursePlan_course_plan_Id number(10,0),
+        trainer_trainer_id number(10,0),
+        primary key (batch_id)
+    )
+Hibernate: 
+    
+    create table track_batch_track_assessment (
+       Batch_batch_id varchar2(255 char) not null,
+        assessments_Assessment_Id number(10,0) not null
+    )
+Hibernate: 
+    
+    create table track_batch_track_attendance (
+       Batch_batch_id varchar2(255 char) not null,
+        attendances_attendanceId number(10,0) not null
+    )
+Hibernate: 
+    
+    create table track_batch_track_holiday (
+       Batch_batch_id varchar2(255 char) not null,
+        holidays_holidayId number(10,0) not null
+    )
+Hibernate: 
+    
+    create table track_batch_track_mentoring_session (
+       Batch_batch_id varchar2(255 char) not null,
+        mentoringSessions_Session_id number(10,0) not null
+    )
+Hibernate: 
+    
+    create table track_batch_track_trainees (
+       Batch_batch_id varchar2(255 char) not null,
+        traineeList_Employee_ID number(10,0) not null
+    )
+Hibernate: 
+    
+    create table track_coursePlan (
+       course_plan_Id number(10,0) generated as identity,
+        batch_batch_id varchar2(255 char),
+        primary key (course_plan_Id)
+    )
+Hibernate: 
+    
+    create table track_coursePlan_track_DayWisePlan (
+       CoursePlan_course_plan_Id number(10,0) not null,
+        dayWisePlans_plan_id number(10,0) not null
+    )
+Hibernate: 
+    
+    create table track_DayWisePlan (
+       plan_id number(10,0) generated as identity,
+        Actual_Date date,
+        Day varchar2(255 char),
+        Planned_Date date,
+        Remarks varchar2(255 char),
+        serialNumber number(10,0),
+        assignmentPlan_assignment_plan_Id number(10,0),
+        attendance_attendanceId number(10,0),
+        topics_topic_Id number(10,0),
+        primary key (plan_id)
+    )
+Hibernate: 
+    
+    create table track_holiday (
+       holidayId number(10,0) not null,
+        Holiday_Date date,
+        Holiday_Name varchar2(255 char),
+        Holiday_type varchar2(255 char),
+        primary key (holidayId)
+    )
+Hibernate: 
+    
+    create table track_mentoring_session (
+       Session_id number(10,0) generated as identity,
+        Actual_Date date,
+        Planned_Date date,
+        Session_Time date,
+        Remarks varchar2(255 char),
+        Session_Description varchar2(255 char),
+        primary key (Session_id)
+    )
+Hibernate: 
+    
+    create table track_subtopic (
+       subtopic_Id number(10,0) not null,
+        subtopic_name varchar2(255 char),
+        primary key (subtopic_Id)
+    )
+Hibernate: 
+    
+    create table track_topic (
+       topic_Id number(10,0) not null,
+        topic_name varchar2(255 char),
+        primary key (topic_Id)
+    )
+Hibernate: 
+    
+    create table track_topic_track_subtopic (
+       Topic_topic_Id number(10,0) not null,
+        subTopics_subtopic_Id number(10,0) not null
+    )
+Hibernate: 
+    
+    create table track_trainees (
+       Employee_ID number(10,0) not null,
+        branch varchar2(255 char),
+        ContactNo varchar2(255 char),
+        college varchar2(255 char),
+        DOJ date,
+        Final_Grade varchar2(255 char),
+        Final_Marks double precision,
+        Gender varchar2(255 char),
+        EmailID varchar2(255 char),
+        Remarks varchar2(255 char),
+        Status_Flag number(10,0),
+        Tenth_Marks double precision,
+        Trainee_Name varchar2(255 char),
+        Twelveth_Marks double precision,
+        primary key (Employee_ID)
+    )
+Hibernate: 
+    
+    create table track_trainer (
+       trainer_id number(10,0) not null,
+        Status_Flag number(10,0),
+        trainer_contact_number varchar2(255 char),
+        trainer_email varchar2(255 char),
+        trainer_name varchar2(255 char),
+        trainer_type varchar2(255 char),
+        primary key (trainer_id)
+    )
+Hibernate: 
+    
+    create table track_users (
+       username varchar2(255 char) not null,
+        enabled number(1,0),
+        password varchar2(255 char),
+        primary key (username)
+    )
+Hibernate: 
+    
+    create table trainee_attendance (
+       trainee_id number(10,0) not null,
+        attendance_status varchar2(255 char),
+        attendance_date date not null,
+        primary key (trainee_id, attendance_date)
+    )
+Hibernate: 
+    
+    create table user_roles (
+       username varchar2(255 char) not null,
+        role varchar2(255 char)
+    )
+Hibernate: 
+    
+    alter table track_batch_track_assessment 
+       add constraint UK_6x1c7ft1wx3p2ltfuv6yvkxp unique (assessments_Assessment_Id)
+Hibernate: 
+    
+    alter table track_batch_track_attendance 
+       add constraint UK_hk0mxy7vf04kvgq51dp5v97o3 unique (attendances_attendanceId)
+Hibernate: 
+    
+    alter table track_batch_track_holiday 
+       add constraint UK_4e8i7ijxo5mm6ybf95tywqh53 unique (holidays_holidayId)
+Hibernate: 
+    
+    alter table track_batch_track_mentoring_session 
+       add constraint UK_tkc4nkm25kg8dj6x0yd2oo9im unique (mentoringSessions_Session_id)
+Hibernate: 
+    
+    alter table track_batch_track_trainees 
+       add constraint UK_eyvh3edgsench6rxwetgageff unique (traineeList_Employee_ID)
+Hibernate: 
+    
+    alter table track_coursePlan_track_DayWisePlan 
+       add constraint UK_45o7cn6gpm71n9jy8sgv3vod unique (dayWisePlans_plan_id)
+Hibernate: 
+    
+    alter table track_topic_track_subtopic 
+       add constraint UK_hicn8gfwn84fasacncbkht2dg unique (subTopics_subtopic_Id)
+Hibernate: 
+    
+    alter table Assessment_marksObtained 
+       add constraint FK3td1jo53m3gmrq9qt920rwms2 
+       foreign key (Assessment_Assessment_Id) 
+       references track_assessment
+Hibernate: 
+    
+    alter table AssignmentPlan_marksObtained 
+       add constraint FKr9utd5khat0016rhm9jqg0no 
+       foreign key (AssignmentPlan_assignment_plan_Id) 
+       references track_assignment_plan
+Hibernate: 
+    
+    alter table attendance_trainee 
+       add constraint FKra4o9poumy2vrj1i9b9yc1cef 
+       foreign key (employeeId) 
+       references track_trainees
+Hibernate: 
+    
+    alter table attendance_trainee 
+       add constraint FKjeih87kn94gory3awpmao6nhb 
+       foreign key (attendanceId) 
+       references track_attendance
+Hibernate: 
+    
+    alter table track_batch 
+       add constraint FKl6a1l4ymkeuaaqaonwg7q84eu 
+       foreign key (coursePlan_course_plan_Id) 
+       references track_coursePlan
+Hibernate: 
+    
+    alter table track_batch 
+       add constraint FKa40m2vpk16urwueiyech5g37d 
+       foreign key (trainer_trainer_id) 
+       references track_trainer
+Hibernate: 
+    
+    alter table track_batch_track_assessment 
+       add constraint FKldi8geovfscwierggtmjcvesf 
+       foreign key (assessments_Assessment_Id) 
+       references track_assessment
+Hibernate: 
+    
+    alter table track_batch_track_assessment 
+       add constraint FKf6arpky4fcchu1addi475jxml 
+       foreign key (Batch_batch_id) 
+       references track_batch
+Hibernate: 
+    
+    alter table track_batch_track_attendance 
+       add constraint FKtpqlv8n735lt8fbuqmuscvf3c 
+       foreign key (attendances_attendanceId) 
+       references track_attendance
+Hibernate: 
+    
+    alter table track_batch_track_attendance 
+       add constraint FKes32byft52bnbfqc8bexqdjf5 
+       foreign key (Batch_batch_id) 
+       references track_batch
+Hibernate: 
+    
+    alter table track_batch_track_holiday 
+       add constraint FK453ejobr8fdykcrggkjyo4847 
+       foreign key (holidays_holidayId) 
+       references track_holiday
+Hibernate: 
+    
+    alter table track_batch_track_holiday 
+       add constraint FKjcigma78dy5btvmf1e0qxdu0a 
+       foreign key (Batch_batch_id) 
+       references track_batch
+Hibernate: 
+    
+    alter table track_batch_track_mentoring_session 
+       add constraint FKm5utdl29igw3iivapdg1d6kce 
+       foreign key (mentoringSessions_Session_id) 
+       references track_mentoring_session
+Hibernate: 
+    
+    alter table track_batch_track_mentoring_session 
+       add constraint FKrbybcwmnlukkxybgf1xysechy 
+       foreign key (Batch_batch_id) 
+       references track_batch
+Hibernate: 
+    
+    alter table track_batch_track_trainees 
+       add constraint FKrdljc0j9max509iviuyxxtb0l 
+       foreign key (traineeList_Employee_ID) 
+       references track_trainees
+Hibernate: 
+    
+    alter table track_batch_track_trainees 
+       add constraint FKl1d9ovu8lyuj090kypw5b21jj 
+       foreign key (Batch_batch_id) 
+       references track_batch
+Hibernate: 
+    
+    alter table track_coursePlan 
+       add constraint FKgh5xniaevy2p4grp1con51oo3 
+       foreign key (batch_batch_id) 
+       references track_batch
+Hibernate: 
+    
+    alter table track_coursePlan_track_DayWisePlan 
+       add constraint FKaladnsm6pq4c3ywksc4pdip1n 
+       foreign key (dayWisePlans_plan_id) 
+       references track_DayWisePlan
+Hibernate: 
+    
+    alter table track_coursePlan_track_DayWisePlan 
+       add constraint FKr2k7ac8bw5sp95ho610bft5vs 
+       foreign key (CoursePlan_course_plan_Id) 
+       references track_coursePlan
+Hibernate: 
+    
+    alter table track_DayWisePlan 
+       add constraint FKomdnu7ewpcmgyp3b6ca8dliyr 
+       foreign key (assignmentPlan_assignment_plan_Id) 
+       references track_assignment_plan
+Hibernate: 
+    
+    alter table track_DayWisePlan 
+       add constraint FKngpxfeeyt4qixxtjr00o5urgc 
+       foreign key (attendance_attendanceId) 
+       references track_attendance
+Hibernate: 
+    
+    alter table track_DayWisePlan 
+       add constraint FKn6y5augfnn9r3swgcgv9d0ur1 
+       foreign key (topics_topic_Id) 
+       references track_topic
+Hibernate: 
+    
+    alter table track_topic_track_subtopic 
+       add constraint FKlaqbl5u8g432wlkbxkfo59u21 
+       foreign key (subTopics_subtopic_Id) 
+       references track_subtopic
+Hibernate: 
+    
+    alter table track_topic_track_subtopic 
+       add constraint FKiyhs15uqxye538e3awdgpt9m3 
+       foreign key (Topic_topic_Id) 
+       references track_topic
+Hibernate: 
+    
+    alter table trainee_attendance 
+       add constraint FK3giu9hbkwhgl7pgqx0s1ue2au 
+       foreign key (trainee_id) 
+       references track_trainees
+Hibernate: 
+    
+    alter table user_roles 
+       add constraint FKqytf85xcm94cgtr7hngqlk6kd 
+       foreign key (username) 
+       references track_users
